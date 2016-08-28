@@ -1,0 +1,16 @@
+{
+  "name": "portfolio",
+  "version": "0.0.0",
+  "description": "My portfolio. Updated semi-regularly",
+  "main": "index.html",
+  "scripts": {
+    "test": "http-server ./www/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/lawrence_nt/portfolio.git"
+  },
+  "author": "Lawrence Tranter",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/lawrence_nt/portfolio#readme"
+}
