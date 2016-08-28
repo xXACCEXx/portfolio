@@ -12,5 +12,9 @@
   },
   "author": "Lawrence Tranter",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/lawrence_nt/portfolio#readme"
+  "homepage": "https://bitbucket.org/lawrence_nt/portfolio#readme",
+  "dependencies": {
+    "gulp-less": "^3.1.0",
+    "gulp-sourcemaps": "^1.6.0"
+  }
 }
