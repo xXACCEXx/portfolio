@@ -14,7 +14,9 @@
   "license": "MIT",
   "homepage": "https://bitbucket.org/lawrence_nt/portfolio#readme",
   "dependencies": {
-    "gulp-less": "^3.1.0",
-    "gulp-sourcemaps": "^1.6.0"
+    "express": "^4.15.2",
+    "gulp": "^3.9.1",
+    "mongoose": "^4.9.3",
+    "ractive": "^0.8.12"
   }
 }
