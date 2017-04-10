@@ -1,0 +1,5 @@
+@import "../../scss/mixins/_editorColours.scss";
+
+.ux-editor {
+	outline: 1px solid $editorBlock;
+}
