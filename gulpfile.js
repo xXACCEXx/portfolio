@@ -94,4 +94,10 @@ gulp.task('watch', [
 	'watch-js'
 ])
 
+gulp.task('create', function () {
+	var i = process.argv.indexOf('--component') || process.argv.indexOf('-c');
+	var n_comp_name = process.argv[i + 1];
+	require('./tasks/gulp-create-comp')(n_comp_name);
+})
+
 gulp.task('default', ['bundle']);
