@@ -15,7 +15,7 @@ var browserify = require('browserify');
 var buildTemplates = require('./tasks/gulp-build-templates');
 var buildComponents = require('./tasks/gulp-build-components');
 
-gulp.task('scss', () => {
+gulp.task('build-scss', () => {
 	return gulp.src([
 		'./front/scss/style.scss',
 		'./front/components/ux-*/ux-*.scss'
@@ -32,22 +32,22 @@ gulp.task('scss', () => {
 		.pipe(gulp.dest('./public/css/'))
 })
 
-gulp.task('build-templates', () => {
+gulp.task('build-hbs', () => {
 	gulp.src('./front/components/ux-*/ux-*.hbs')
 		.pipe(buildTemplates())
 		.pipe(source('templates.js'))
 		.pipe(gulp.dest('./tmp/'))
 });
 
-gulp.task('build-components', () => {
+gulp.task('build-js', () => {
 	gulp.src('./front/components/ux-*/ux-*.js')
 		.pipe(buildComponents())
 		.pipe(source('components.js'))
 		.pipe(gulp.dest('./tmp/'))
 })
 
-gulp.task('bundle', ['build-templates', 'build-components'], () => {
-	browserify('./tmp/components.js').bundle()
+gulp.task('bundle', ['build-hbs', 'build-js'], () => {
+	browserify('./front/core.js').bundle()
 		.pipe(source('bundle.js'))
 		.pipe(gulp.dest('./public/js/'))
 		.pipe(buffer())
@@ -65,11 +65,33 @@ gulp.task('minify', ['bundle'], function () {
 
 gulp.task('watch-scss', () => {
 	var files = [
-		'./front/scss/*.scss',
+		'./front/scss/**/*.scss',
 		'./front/components/ux-*/ux-*.scss'
-	];
+	]
 
-	gulp.watch(files, 'scss');
+	gulp.watch(files, ['build-scss']);
 });
 
-gulp.task('default', ['bundle'])
+gulp.task('watch-hbs', () => {
+	var files = [
+		'./front/components/ux-*/ux-*.hbs'
+	]
+
+	gulp.watch(files, ['minify']);
+})
+
+gulp.task('watch-js', () => {
+	var files = [
+		'./front/components/ux-*/ux-*.js'
+	]
+
+	gulp.watch(files, ['minify']);
+})
+
+gulp.task('watch', [
+	'watch-scss',
+	'watch-hbs',
+	'watch-js'
+])
+
+gulp.task('default', ['bundle']);
