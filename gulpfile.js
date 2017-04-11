@@ -16,14 +16,13 @@ var buildTemplates = require('./tasks/gulp-build-templates');
 var buildComponents = require('./tasks/gulp-build-components');
 var buildFont = require('./tasks/gulp-build-font');
 
-gulp.task('create-font', () => {
+gulp.task('build-font', () => {
 	return gulp.src('./assets/icons/*.svg')
 		.pipe(buildFont())
-		.pipe(source('icon.scss'))
 		.pipe(gulp.dest('./public/fonts/'))
 })
 
-gulp.task('build-scss', ['copy-fonts'], () => {
+gulp.task('build-scss', ['build-font'], () => {
 	return gulp.src([
 		'./front/scss/style.scss',
 		'./front/components/ux-*/ux-*.scss'
