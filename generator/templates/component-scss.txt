@@ -1,0 +1,3 @@
+.ux-${compName} {
+	//	.ux-${compName} styles here
+}
