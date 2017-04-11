@@ -14,8 +14,16 @@ var browserify = require('browserify');
 //	custom stuff
 var buildTemplates = require('./tasks/gulp-build-templates');
 var buildComponents = require('./tasks/gulp-build-components');
+var buildFont = require('./tasks/gulp-build-font');
 
-gulp.task('build-scss', () => {
+gulp.task('create-font', () => {
+	return gulp.src('./assets/icons/*.svg')
+		.pipe(buildFont())
+		.pipe(source('icon.scss'))
+		.pipe(gulp.dest('./public/fonts/'))
+})
+
+gulp.task('build-scss', ['copy-fonts'], () => {
 	return gulp.src([
 		'./front/scss/style.scss',
 		'./front/components/ux-*/ux-*.scss'
@@ -95,9 +103,13 @@ gulp.task('watch', [
 ])
 
 gulp.task('create', function () {
-	var i = process.argv.indexOf('--component') || process.argv.indexOf('-c');
+	var i = process.argv.indexOf('--component');
+	if (i < 0) i = process.argv.indexOf('-c');
 	var n_comp_name = process.argv[i + 1];
-	require('./tasks/gulp-create-comp')(n_comp_name);
+
+	if (i >= 0 && n_comp_name) {
+		require('./tasks/gulp-create-comp')(n_comp_name);
+	}
 })
 
-gulp.task('default', ['bundle']);
+gulp.task('default', ['build-scss', 'bundle']);

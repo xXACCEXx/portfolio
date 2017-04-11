@@ -11,20 +11,20 @@ module.exports = function (compName) {
 	var tmpl = {};
 
 	//	hbs file template
-	tmpl.hbs = `<div class="${compName}">
-	The ${compName} component
+	tmpl.hbs = `<div class="ux-${compName}">
+	The ux-${compName} component
 </div>`;
 
 	//	js file template
-	tmpl.js = `var Ractive = require('ractive');
+	tmpl.js = `var Ractive = require('ractive/ractive.min');
 var Templates = require('../../../tmp/templates');
 
 module.exports = Ractive.extend({
-	template: Templates['${compName}']
+	template: Templates['ux-${compName}']
 })`;
 
 	//	scss file template
-	tmpl.scss = `.${compName} { }`;
+	tmpl.scss = `.ux-${compName} { }`;
 
 
 	//	create folder
