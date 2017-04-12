@@ -14,24 +14,4 @@ module.exports = function () {
 		fontName: 'linear-icons',
 		startUnicode: 0xE800
 	})
-		.on('glyphs', function (glyphs) {
-			//	glyphs = [{name, unicode, color}];
-
-			var glyphChunks = [];
-
-			glyphs
-				.map(glyph => {
-					var orig = glyph.unicode;
-					glyph.unicode = "\\" + ('' + glyph.unicode).codePointAt(0).toString(16);
-					// console.log(orig, '->', glyph.unicode);
-					return glyph
-				})
-				.forEach(glyph => {
-					var t = templater(iconClass, glyph)
-					glyphChunks.push(t);
-				})
-
-			var finalSCSS = templater(iconStyle, { allIcons: glyphChunks.join('\n') });
-			fs.createWriteStream('./tmp/icon-styling.scss').write(finalSCSS);
-		})
 }
