@@ -1,6 +1,5 @@
 node_modules/
 typings/
 tmp/
-public/css/style.css
-public/js/bundle*js
+public/
 my_skills-web.zip
