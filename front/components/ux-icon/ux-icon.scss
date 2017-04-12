@@ -1,5 +1,5 @@
-@import "../../scss/partials/icons.scss";
+@import "../../../tmp/icon-styling.scss";
 
 .ux-icon {
-	@extend .lnr;
+	@include icon-parent();
 }
