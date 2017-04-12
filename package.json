@@ -28,6 +28,8 @@
     "gulp-sourcemaps": "^2.5.1",
     "gulp-streamify": "^1.0.2",
     "gulp-svgicons2svgfont": "^3.0.1",
+    "gulp-svgmin": "^1.2.3",
+    "gulp-svgstore": "^6.1.0",
     "gulp-uglify": "^2.1.2",
     "vinyl-source-stream": "^1.1.0"
   }

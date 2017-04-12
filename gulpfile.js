@@ -4,7 +4,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var buffer = require('gulp-buffer');
 
-var thru = require('through2');
+var simple = require('./utils/stream-simplifier');
 var source = require('vinyl-source-stream');
 
 //	build stuff
@@ -17,8 +17,19 @@ var buildComponents = require('./tasks/gulp-build-components');
 var buildFont = require('./tasks/gulp-build-font');
 
 gulp.task('build-font', () => {
-	return gulp.src('./assets/icons/*.svg')
-		.pipe(buildFont())
+	var store = require('gulp-svgstore');
+	var svgmin = require('gulp-svgmin');
+
+	return gulp.src('./assets/linear-icons/*.svg')
+		.pipe(svgmin({
+			plugins: [{
+				cleanupIDs: {
+					prefix: 'icon-',
+					minify: true
+				}
+			}]
+		}))
+		.pipe(store())
 		.pipe(gulp.dest('./public/fonts/'))
 })
 
