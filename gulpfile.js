@@ -8,13 +8,13 @@ var simple = require('./utils/stream-simplifier');
 var source = require('vinyl-source-stream');
 
 //	build stuff
-var scss = require('gulp-sass');
+var scss = require('gulp-scss');
 var browserify = require('browserify');
 
 //	custom stuff
 var buildTemplates = require('./tasks/gulp-build-templates');
 var buildComponents = require('./tasks/gulp-build-components');
-var buildFont = require('./tasks/gulp-build-font');
+// var buildFont = require('./tasks/gulp-build-font');
 
 gulp.task('build-font', () => {
 	var store = require('gulp-svgstore');
